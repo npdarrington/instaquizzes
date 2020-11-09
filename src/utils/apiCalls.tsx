@@ -1,16 +1,11 @@
-import {
-	Difficulty,
-	QuestionAPIModel,
-	QuizQuestionModel,
-	randomizeAnswers,
-} from './utils';
+import { Difficulty, QuestionAPIModel, randomizeAnswers } from './utils';
 
 const quizQuestionsUrl = `https://opentdb.com/api.php`;
 
 export const getQuizQuestions = async (
 	amount: number,
 	difficulty: Difficulty
-): Promise<QuizQuestionModel | string> => {
+): Promise<any> => {
 	const fetchQuestions = await fetch(
 		`${quizQuestionsUrl}?amount=${amount}&difficulty=${difficulty}&type=multiple`
 	);
@@ -25,7 +20,5 @@ export const getQuizQuestions = async (
 				]),
 			};
 		});
-	} else {
-		return 'error';
 	}
 };
