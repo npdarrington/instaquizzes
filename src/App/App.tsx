@@ -23,7 +23,7 @@ const App = () => {
 	};
 
 	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
-		if (!gameOver) {
+		if (!gameOver && userAnswers.length !== currentQuestionNum) {
 			const answer = event.currentTarget.innerHTML;
 			const correct =
 				questions[currentQuestionNum - 1].correct_answer === answer;
