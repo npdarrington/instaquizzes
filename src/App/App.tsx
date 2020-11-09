@@ -8,6 +8,8 @@ import './App.scss';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
+	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
+	const [questionCount, setQuestionCount] = useState(15);
 
 	const startQuiz = async () => {
 		try {
@@ -31,6 +33,12 @@ const App = () => {
 					question={questions[0].question}
 					answers={questions[0].answers}
 				/>
+			)}
+			{currentQuestionNum === questionCount && (
+				<section className='play-again-section'>
+					<button>Restart</button>
+					<button>Save</button>
+				</section>
 			)}
 		</div>
 	);
