@@ -27,6 +27,7 @@ export interface UserAnswerModel {
 }
 
 export interface SavedQuizGamesModel {
+	id: number;
 	allQuestions: QuizQuestionModel;
 	allAnswers: UserAnswerModel;
 }
