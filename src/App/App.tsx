@@ -60,6 +60,8 @@ const App = () => {
 					question={questions[currentQuestionNum - 1].question}
 					answers={questions[currentQuestionNum - 1].answers}
 					validateAnswer={validateAnswer}
+					currentQuestionNum={currentQuestionNum}
+					questionCount={questionCount}
 				/>
 			)}
 			{userAnswers.length === currentQuestionNum &&
