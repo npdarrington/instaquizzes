@@ -34,6 +34,12 @@ const App = () => {
 					answers={questions[0].answers}
 				/>
 			)}
+			{currentQuestionNum === 15 && (
+				<section className='play-again-section'>
+					<button>Restart</button>
+					<button>Save</button>
+				</section>
+			)}
 		</div>
 	);
 };
