@@ -29,6 +29,7 @@ const App = () => {
 				<Question
 					category={questions[0].category}
 					question={questions[0].question}
+					answers={questions[0].answers}
 				/>
 			)}
 		</div>
