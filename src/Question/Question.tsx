@@ -5,6 +5,8 @@ interface IProps {
 	question: string;
 	answers: string[];
 	validateAnswer: (event: React.MouseEvent<HTMLButtonElement>) => void;
+	currentQuestionNum: number;
+	questionCount: number;
 }
 
 const Question: React.FC<IProps> = ({
@@ -12,11 +14,13 @@ const Question: React.FC<IProps> = ({
 	question,
 	answers,
 	validateAnswer,
+	currentQuestionNum,
+	questionCount,
 }) => {
 	return (
 		<article className='question-card'>
 			<h3 className='question-number'>{category}</h3>
-			<p className='question-number'>Question: 1 / 15</p>
+			<p className='question-number'>{`Question ${currentQuestionNum} / ${questionCount}`}</p>
 			<p dangerouslySetInnerHTML={{ __html: question }} />
 			<section className='answers'>
 				{answers.map((answer, i) => (

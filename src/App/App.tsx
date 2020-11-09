@@ -11,6 +11,7 @@ const App = () => {
 	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
+	const [gameOver, setGameOver] = useState(false);
 
 	const startQuiz = async () => {
 		try {
@@ -22,19 +23,26 @@ const App = () => {
 	};
 
 	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const answer = event.currentTarget.innerHTML;
-		const correct = questions[currentQuestionNum - 1].correct_answer === answer;
-		const answerModel = {
-			question: questions[currentQuestionNum - 1].question,
-			answer,
-			correct,
-			correctAnswer: questions[currentQuestionNum - 1].correct_answer,
-		};
-		setUserAnswers([...userAnswers, answerModel]);
+		if (!gameOver) {
+			const answer = event.currentTarget.innerHTML;
+			const correct =
+				questions[currentQuestionNum - 1].correct_answer === answer;
+			const answerModel = {
+				question: questions[currentQuestionNum - 1].question,
+				answer,
+				correct,
+				correctAnswer: questions[currentQuestionNum - 1].correct_answer,
+			};
+			setUserAnswers([...userAnswers, answerModel]);
+		}
 	};
 
 	const nextQuestion = () => {
-		setCurrentQuestionNum(currentQuestionNum + 1);
+		if (userAnswers.length === questionCount) {
+			setGameOver(true);
+		} else {
+			setCurrentQuestionNum(currentQuestionNum + 1);
+		}
 	};
 
 	return (
@@ -50,13 +58,18 @@ const App = () => {
 					question={questions[currentQuestionNum - 1].question}
 					answers={questions[currentQuestionNum - 1].answers}
 					validateAnswer={validateAnswer}
+					currentQuestionNum={currentQuestionNum}
+					questionCount={questionCount}
 				/>
 			)}
-			{userAnswers.length === currentQuestionNum &&
-				userAnswers.length !== questionCount && (
-					<button onClick={nextQuestion}>Next Question</button>
-				)}
-			{currentQuestionNum === questionCount && (
+			{!gameOver && userAnswers.length === currentQuestionNum && (
+				<button onClick={nextQuestion}>
+					{userAnswers.length === questionCount
+						? `Finish Quiz`
+						: `Next Question`}
+				</button>
+			)}
+			{gameOver && (
 				<section className='play-again-section'>
 					<button>Restart</button>
 					<button>Save</button>
