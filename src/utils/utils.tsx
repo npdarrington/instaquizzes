@@ -19,6 +19,13 @@ export interface CombinedAnswersModel {
 
 export type QuizQuestionModel = QuestionAPIModel & CombinedAnswersModel;
 
+export interface UserAnswerModel {
+	question: string;
+	answer: string;
+	correct: boolean;
+	correctAnswer: string;
+}
+
 export const randomizeAnswers = (answers: string[]) => {
 	const randomizedAnswers = [];
 	const iteration: number = answers.length;

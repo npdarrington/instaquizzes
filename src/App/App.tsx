@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QuizQuestionModel, Difficulty } from '../utils/utils';
+import { QuizQuestionModel, Difficulty, UserAnswerModel } from '../utils/utils';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
@@ -8,6 +8,7 @@ import './App.scss';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
+	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
 
@@ -20,6 +21,22 @@ const App = () => {
 		}
 	};
 
+	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
+		const answer = event.currentTarget.value;
+		const correct = questions[currentQuestionNum - 1].correct_answer === answer;
+		const answerModel = {
+			question: questions[currentQuestionNum - 1].question,
+			answer,
+			correct,
+			correctAnswer: questions[currentQuestionNum - 1].correct_answer,
+		};
+		setUserAnswers([...userAnswers, answerModel]);
+	};
+
+	const nextQuestion = () => {
+		setCurrentQuestionNum(currentQuestionNum + 1);
+	};
+
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
@@ -29,11 +46,16 @@ const App = () => {
 			)}
 			{questions.length > 0 && (
 				<Question
-					category={questions[0].category}
-					question={questions[0].question}
-					answers={questions[0].answers}
+					category={questions[currentQuestionNum - 1].category}
+					question={questions[currentQuestionNum - 1].question}
+					answers={questions[currentQuestionNum - 1].answers}
+					validateAnswer={validateAnswer}
 				/>
 			)}
+			{userAnswers.length === currentQuestionNum &&
+				userAnswers.length !== questionCount && (
+					<button onClick={nextQuestion}>Next Question</button>
+				)}
 			{currentQuestionNum === questionCount && (
 				<section className='play-again-section'>
 					<button>Restart</button>
