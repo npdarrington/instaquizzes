@@ -68,7 +68,7 @@ const App = () => {
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
-			<button onClick={startQuiz}>Click me for testing!</button>
+			<button onClick={startQuiz}>Start a New InstaQuiz!</button>
 			{questions.length < 1 && (
 				<h1>Click on the button above to test a Question!</h1>
 			)}
