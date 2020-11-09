@@ -37,4 +37,8 @@ describe('App', () => {
 		];
 		render(<App />);
 	});
+
+	test('should render instaquizzes to the screen', () => {
+		expect(screen.getByText('InstaQuizzes')).toBeInTheDocument();
+	});
 });
