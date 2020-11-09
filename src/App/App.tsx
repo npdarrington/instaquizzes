@@ -11,6 +11,7 @@ const App = () => {
 	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
+	const [gameOver, setGameOver] = useState(false);
 
 	const startQuiz = async () => {
 		try {
@@ -22,15 +23,18 @@ const App = () => {
 	};
 
 	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const answer = event.currentTarget.innerHTML;
-		const correct = questions[currentQuestionNum - 1].correct_answer === answer;
-		const answerModel = {
-			question: questions[currentQuestionNum - 1].question,
-			answer,
-			correct,
-			correctAnswer: questions[currentQuestionNum - 1].correct_answer,
-		};
-		setUserAnswers([...userAnswers, answerModel]);
+		if (!gameOver) {
+			const answer = event.currentTarget.innerHTML;
+			const correct =
+				questions[currentQuestionNum - 1].correct_answer === answer;
+			const answerModel = {
+				question: questions[currentQuestionNum - 1].question,
+				answer,
+				correct,
+				correctAnswer: questions[currentQuestionNum - 1].correct_answer,
+			};
+			setUserAnswers([...userAnswers, answerModel]);
+		}
 	};
 
 	const nextQuestion = () => {
