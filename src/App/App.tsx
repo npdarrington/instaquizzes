@@ -111,7 +111,7 @@ const App = () => {
 			{gameOver && (
 				<section className='play-again-section'>
 					<button onClick={startQuiz}>Start New Game</button>
-					<button>Save</button>
+					<button onClick={saveQuizGame}>Save Previous Game</button>
 				</section>
 			)}
 		</div>
