@@ -47,6 +47,6 @@ describe('Question', () => {
 				questionCount={mockQuestions.length}
 			/>
 		);
-		screen.debug();
+		expect(screen.getByText('Entertainment: Music')).toBeInTheDocument();
 	});
 });
