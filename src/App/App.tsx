@@ -8,6 +8,7 @@ import './App.scss';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
+	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
 
 	const startQuiz = async () => {
