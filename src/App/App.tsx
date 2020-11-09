@@ -19,6 +19,8 @@ const App = () => {
 		setLoading('Loading your InstaQuiz...');
 		setError('');
 		setGameOver(false);
+		setUserAnswers([]);
+		setCurrentQuestionNum(1);
 
 		try {
 			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
@@ -87,7 +89,7 @@ const App = () => {
 			)}
 			{gameOver && (
 				<section className='play-again-section'>
-					<button>Restart</button>
+					<button onClick={startQuiz}>Start New Game</button>
 					<button>Save</button>
 				</section>
 			)}
