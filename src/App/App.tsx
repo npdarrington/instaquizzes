@@ -12,6 +12,7 @@ const App = () => {
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
 	const [gameOver, setGameOver] = useState(false);
+	const [error, setError] = useState('');
 
 	const startQuiz = async () => {
 		try {
@@ -34,13 +35,20 @@ const App = () => {
 				correctAnswer: questions[currentQuestionNum - 1].correct_answer,
 			};
 			setUserAnswers([...userAnswers, answerModel]);
+			setError('');
+		} else {
+			gameOver
+				? setError('The game has already finished!')
+				: setError('This question has already been answered!');
 		}
 	};
 
 	const nextQuestion = () => {
 		if (userAnswers.length === questionCount) {
 			setGameOver(true);
+			setError('');
 		} else {
+			setError('');
 			setCurrentQuestionNum(currentQuestionNum + 1);
 		}
 	};
@@ -52,6 +60,7 @@ const App = () => {
 			{questions.length < 1 && (
 				<h1>Click on the button above to test a Question!</h1>
 			)}
+			{error && <h1>{error}</h1>}
 			{questions.length > 0 && (
 				<Question
 					category={questions[currentQuestionNum - 1].category}
