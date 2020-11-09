@@ -28,3 +28,12 @@ export const randomizeAnswers = (answers: string[]) => {
 	}
 	return randomizedAnswers;
 };
+
+export const cleanQuestionHTML = (allQuestions: QuizQuestionModel[]) => {
+	return allQuestions.map(question => {
+		if (question.question.includes('quot;')) {
+			question.question = question.question.replace('quot;', '"');
+		}
+		return question;
+	});
+};
