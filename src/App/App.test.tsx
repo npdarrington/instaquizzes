@@ -19,7 +19,7 @@ describe('App', () => {
 				type: 'multiple',
 				difficulty: 'easy',
 				question:
-					'In the  Rossini opera, what was the name of &#039;The Barber of Seville&#039;?',
+					"In the  Rossini opera, what was the name of 'The Barber of Seville'?",
 				correct_answer: 'Figaro',
 				incorrect_answers: ['Angelo', 'Fernando', 'Dave'],
 				answers: ['Dave', 'Fernando', 'Figaro', 'Angelo'],
@@ -58,6 +58,18 @@ describe('App', () => {
 		const questionCategory = await waitFor(() =>
 			screen.getByText('Entertainment: Music')
 		);
+		const question = screen.getByText(
+			"In the Rossini opera, what was the name of 'The Barber of Seville'?"
+		);
+		const answersBtns = screen.getAllByRole('button');
+		const answerBtn1 = answersBtns[1].innerHTML;
+		const answerBtn2 = answersBtns[2].innerHTML;
+		const answerBtn3 = answersBtns[3].innerHTML;
+		const answerBtn4 = answersBtns[4].innerHTML;
 		expect(questionCategory).toBeInTheDocument();
+		expect(answerBtn1).toBe('Dave');
+		expect(answerBtn2).toBe('Fernando');
+		expect(answerBtn3).toBe('Figaro');
+		expect(answerBtn4).toBe('Angelo');
 	});
 });
