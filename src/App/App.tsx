@@ -35,6 +35,8 @@ const App = () => {
 					answers={questions[0].answers}
 				/>
 			)}
+			{userAnswers.length === currentQuestionNum &&
+				userAnswers.length !== questionCount && <button>Next Question</button>}
 			{currentQuestionNum === questionCount && (
 				<section className='play-again-section'>
 					<button>Restart</button>
