@@ -14,7 +14,7 @@ export interface QuestionAPIModel {
 }
 
 export interface CombinedAnswersModel {
-	answers: [];
+	answers: string[];
 }
 
 export type QuizQuestionModel = QuestionAPIModel & CombinedAnswersModel;
