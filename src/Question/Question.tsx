@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Question = () => {
+interface IProps {
+	category: string;
+}
+
+const Question: React.FC<IProps> = () => {
 	return (
 		<article className='question-card'>
 			<h3 className='question-number'>Quiz Category Here</h3>
