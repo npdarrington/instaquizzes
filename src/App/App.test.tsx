@@ -88,4 +88,35 @@ describe('App', () => {
 			screen.getByRole('button', { name: 'Next Question' })
 		).toBeInTheDocument();
 	});
+
+	test('should allow a user to go to next question when clicking next question', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(<App />);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Music'));
+		const answerBtnFirstQuestion = screen.getByRole('button', {
+			name: 'Figaro',
+		});
+		userEvent.click(answerBtnFirstQuestion);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		const questionCategory = await waitFor(() =>
+			screen.getByText('Entertainment: Video Games')
+		);
+		const question = screen.getByText(
+			'Which of these is NOT a map included in the game Counter-Strike: Global Offensive?'
+		);
+		const answersBtns = screen.getAllByRole('button');
+		const answerBtn1 = answersBtns[1].innerHTML;
+		const answerBtn2 = answersBtns[2].innerHTML;
+		const answerBtn3 = answersBtns[3].innerHTML;
+		const answerBtn4 = answersBtns[4].innerHTML;
+		expect(questionCategory).toBeInTheDocument();
+		expect(question).toBeInTheDocument();
+		expect(answerBtn1).toBe('Assault');
+		expect(answerBtn2).toBe('Oilrig');
+		expect(answerBtn3).toBe('Mirage');
+		expect(answerBtn4).toBe('Cache');
+	});
 });
