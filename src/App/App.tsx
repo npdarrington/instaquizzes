@@ -25,7 +25,12 @@ const App = () => {
 			{questions.length < 1 && (
 				<h1>Click on the button above to test a Question!</h1>
 			)}
-			{questions.length > 0 && <Question category={questions[0].category} />}
+			{questions.length > 0 && (
+				<Question
+					category={questions[0].category}
+					question={questions[0].question}
+				/>
+			)}
 		</div>
 	);
 };
