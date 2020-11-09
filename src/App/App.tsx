@@ -46,14 +46,16 @@ const App = () => {
 			)}
 			{questions.length > 0 && (
 				<Question
-					category={questions[0].category}
-					question={questions[0].question}
-					answers={questions[0].answers}
+					category={questions[currentQuestionNum - 1].category}
+					question={questions[currentQuestionNum - 1].question}
+					answers={questions[currentQuestionNum - 1].answers}
 					validateAnswer={validateAnswer}
 				/>
 			)}
 			{userAnswers.length === currentQuestionNum &&
-				userAnswers.length !== questionCount && <button>Next Question</button>}
+				userAnswers.length !== questionCount && (
+					<button onClick={nextQuestion}>Next Question</button>
+				)}
 			{currentQuestionNum === questionCount && (
 				<section className='play-again-section'>
 					<button>Restart</button>
