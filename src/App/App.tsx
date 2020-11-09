@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QuizQuestionModel, Difficulty } from '../utils/utils';
+import { QuizQuestionModel, Difficulty, UserAnswerModel } from '../utils/utils';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
@@ -8,7 +8,7 @@ import './App.scss';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
-	const [userAnswers, setUserAnswers] = useState([]);
+	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
 	const [questionCount, setQuestionCount] = useState(15);
 
