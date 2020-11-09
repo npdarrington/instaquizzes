@@ -98,6 +98,23 @@ describe('App', () => {
 		expect(answerBtn4).toBe('Sky Sanctuary');
 	});
 
+	test('should show user an error message if they try to answer same question twice', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(<App />);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		const answerBtnFirstQuestion = screen.getByRole('button', {
+			name: 'Demoman',
+		});
+		userEvent.click(answerBtnFirstQuestion);
+		userEvent.click(answerBtnFirstQuestion);
+		expect(
+			screen.getByText('This question has already been answered')
+		).toBeInTheDocument();
+	});
+
 	test('should show the next question button as Finish Quiz after answering last question', async () => {
 		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
 		render(<App />);
