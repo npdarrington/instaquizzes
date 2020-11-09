@@ -13,12 +13,12 @@ export interface QuestionAPIModel {
 	type: string;
 }
 
-export interface CombineAnswersModel {
+export interface CombinedAnswersModel {
 	answers: [];
 }
 
-export type QuizQuestionModel = QuestionAPIModel & CombineAnswersModel;
+export type QuizQuestionModel = QuestionAPIModel & CombinedAnswersModel;
 
-export const randomizeAnswer = (answers: string[]) => {
+export const randomizeAnswers = (answers: string[]) => {
 	Math.floor(Math.random() * answers.length);
 };
