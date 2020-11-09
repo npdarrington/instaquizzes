@@ -17,6 +17,8 @@ export interface CombineAnswersModel {
 	answers: [];
 }
 
+export type QuizQuestionModel = QuestionAPIModel & CombineAnswersModel;
+
 export const randomizeAnswer = (answers: string[]) => {
 	Math.floor(Math.random() * answers.length);
 };
