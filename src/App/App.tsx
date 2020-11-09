@@ -39,6 +39,12 @@ const App = () => {
 
 	const nextQuestion = () => {
 		setCurrentQuestionNum(currentQuestionNum + 1);
+
+		if (currentQuestionNum === questionCount) {
+			setGameOver(true);
+		} else {
+			setCurrentQuestionNum(currentQuestionNum + 1);
+		}
 	};
 
 	return (
