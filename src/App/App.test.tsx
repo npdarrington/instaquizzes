@@ -318,4 +318,106 @@ describe('App', () => {
 			screen.getByRole('button', { name: 'Save Previous Game' })
 		).toBeInTheDocument();
 	});
+
+	test('should save the previous quiz when Save Previous Game is clicked', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(<App />);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		const answerBtnFirstQuestion = screen.getByRole('button', {
+			name: 'Demoman',
+		});
+		userEvent.click(answerBtnFirstQuestion);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: '7',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Hungarian',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Mercy',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sprinter',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Benjamin Franklin',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Steve Blum',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Toad',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Japan',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: '402',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Rome',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Arceus',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Pudding Lane',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Kyoko Ito',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		userEvent.click(screen.getByRole('button', { name: 'Save Previous Game' }));
+		expect(
+			screen.getByText('This InstaQuiz game has been saved')
+		).toBeInTheDocument();
+	});
 });
