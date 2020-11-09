@@ -34,7 +34,7 @@ const App = () => {
 					answers={questions[0].answers}
 				/>
 			)}
-			{currentQuestionNum === 15 && (
+			{currentQuestionNum === questionCount && (
 				<section className='play-again-section'>
 					<button>Restart</button>
 					<button>Save</button>
