@@ -53,4 +53,22 @@ describe('Question', () => {
 	test('should show the current question count to overall question count for game', () => {
 		expect(screen.getByText('Question 1 / 2')).toBeInTheDocument();
 	});
+
+	test('should show the question', () => {
+		render(
+			<Question
+				category={mockQuestions[1].category}
+				question={mockQuestions[1].question}
+				answers={mockQuestions[1].answers}
+				validateAnswer={mockValidateAnswer}
+				currentQuestionNum={1}
+				questionCount={mockQuestions.length}
+			/>
+		);
+		expect(
+			screen.getByText(
+				'Which of these is NOT a map included in the game Counter-Strike: Global Offensive?'
+			)
+		).toBeInTheDocument();
+	});
 });
