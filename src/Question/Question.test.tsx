@@ -84,4 +84,11 @@ describe('Question', () => {
 		expect(answerBtn3.innerHTML).toBe('Figaro');
 		expect(answerBtn4.innerHTML).toBe('Angelo');
 	});
+
+	test('should submit an answer when a user clicks on a button', () => {
+		const allAnswersBtns = screen.getAllByRole('button');
+		const answerBtn3 = allAnswersBtns[2];
+		userEvent.click(answerBtn3);
+		expect(mockValidateAnswer).toHaveBeenCalledTimes(1);
+	});
 });
