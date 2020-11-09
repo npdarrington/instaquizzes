@@ -15,7 +15,7 @@ const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
 	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
-	const [questionCount, setQuestionCount] = useState(15);
+	const [questionCount] = useState(15);
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
