@@ -20,5 +20,11 @@ export interface CombinedAnswersModel {
 export type QuizQuestionModel = QuestionAPIModel & CombinedAnswersModel;
 
 export const randomizeAnswers = (answers: string[]) => {
-	Math.floor(Math.random() * answers.length);
+	const randomizedAnswers = [];
+	const iteration: number = answers.length;
+	for (let i = 0; i < iteration; i++) {
+		let getRandomIndex = Math.floor(Math.random() * answers.length);
+		randomizedAnswers.push(answers.splice(getRandomIndex, 1)[0]);
+	}
+	return randomizedAnswers;
 };
