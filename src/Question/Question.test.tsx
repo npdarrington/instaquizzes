@@ -71,4 +71,17 @@ describe('Question', () => {
 			)
 		).toBeInTheDocument();
 	});
+
+	test('should show all available answers for a question', () => {
+		const allAnswersBtns = screen.getAllByRole('button');
+		const answerBtn1 = allAnswersBtns[0];
+		const answerBtn2 = allAnswersBtns[1];
+		const answerBtn3 = allAnswersBtns[2];
+		const answerBtn4 = allAnswersBtns[3];
+		expect(allAnswersBtns.length).toBe(4);
+		expect(answerBtn1.innerHTML).toBe('Dave');
+		expect(answerBtn2.innerHTML).toBe('Fernando');
+		expect(answerBtn3.innerHTML).toBe('Figaro');
+		expect(answerBtn4.innerHTML).toBe('Angelo');
+	});
 });
