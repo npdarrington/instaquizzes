@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { getQuizQuestions } from '../utils/apiCalls';
@@ -8,7 +8,7 @@ import { QuizQuestionModel } from '../utils/utils';
 
 import App from './App';
 
-jest.mock('../utils/utils.tsx');
+jest.mock('../utils/apiCalls.tsx');
 
 describe('App', () => {
 	let mockQuestions: QuizQuestionModel[];
@@ -35,16 +35,29 @@ describe('App', () => {
 				answers: ['Assault', 'Oilrig', 'Mirage', 'Cache'],
 			},
 		];
-		render(<App />);
 	});
 
 	test('should render instaquizzes to the screen', () => {
+		render(<App />);
 		expect(screen.getByText('InstaQuizzes')).toBeInTheDocument();
 	});
 
 	test('should render a button to start a new InstaQuiz', () => {
+		render(<App />);
 		expect(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		).toBeInTheDocument();
+	});
+
+	test('should render a question on the screen', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(<App />);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		const questionCategory = await waitFor(() =>
+			screen.getByText('Entertainment: Music')
+		);
+		expect(questionCategory).toBeInTheDocument();
 	});
 });
