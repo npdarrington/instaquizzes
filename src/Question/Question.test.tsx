@@ -10,9 +10,9 @@ import Question from '../Question/Question';
 const mockValidateAnswer = jest.fn();
 
 describe('Question', () => {
-	let mockQuestion: any;
+	let mockQuestions: any;
 	beforeEach(() => {
-		mockQuestion = [
+		mockQuestions = [
 			{
 				category: 'Entertainment: Music',
 				type: 'multiple',
@@ -23,18 +23,28 @@ describe('Question', () => {
 				incorrect_answers: ['Angelo', 'Fernando', 'Dave'],
 				answers: ['Dave', 'Fernando', 'Figaro', 'Angelo'],
 			},
+			{
+				category: 'Entertainment: Video Games',
+				type: 'multiple',
+				difficulty: 'easy',
+				question:
+					'Which of these is NOT a map included in the game Counter-Strike: Global Offensive?',
+				correct_answer: 'Oilrig',
+				incorrect_answers: ['Assault', 'Mirage', 'Cache'],
+				answers: ['Assault', 'Oilrig', 'Mirage', 'Cache'],
+			},
 		];
 	});
 
 	test('should show the category of the question', () => {
 		render(
 			<Question
-				category={mockQuestion[0].category}
-				question={mockQuestion[0].question}
-				answers={mockQuestion[0].answers}
+				category={mockQuestions[0].category}
+				question={mockQuestions[0].question}
+				answers={mockQuestions[0].answers}
 				validateAnswer={mockValidateAnswer}
 				currentQuestionNum={1}
-				questionCount={mockQuestion.length}
+				questionCount={mockQuestions.length}
 			/>
 		);
 		screen.debug();
