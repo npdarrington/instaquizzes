@@ -13,6 +13,7 @@ const App = () => {
 	const [questionCount, setQuestionCount] = useState(15);
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
+	const [loading, setLoading] = useState('');
 
 	const startQuiz = async () => {
 		try {
