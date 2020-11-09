@@ -16,9 +16,14 @@ const App = () => {
 	const [loading, setLoading] = useState('');
 
 	const startQuiz = async () => {
+		setLoading('Loading your InstaQuiz...');
+		setError('');
+		setGameOver(false);
+
 		try {
 			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
 			setQuestions(newQuizQuestions);
+			setLoading('');
 		} catch (_err) {
 			console.log(_err);
 		}
