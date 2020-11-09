@@ -27,7 +27,10 @@ const App = () => {
 			setQuestions(newQuizQuestions);
 			setLoading('');
 		} catch (_err) {
-			console.log(_err);
+			setError(
+				'A failure occurred when getting your InstaQuiz game! Please refresh to try again!'
+			);
+			setLoading('');
 		}
 	};
 
