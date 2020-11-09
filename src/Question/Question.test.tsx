@@ -34,9 +34,6 @@ describe('Question', () => {
 				answers: ['Assault', 'Oilrig', 'Mirage', 'Cache'],
 			},
 		];
-	});
-
-	test('should show the category of the question', () => {
 		render(
 			<Question
 				category={mockQuestions[0].category}
@@ -47,6 +44,13 @@ describe('Question', () => {
 				questionCount={mockQuestions.length}
 			/>
 		);
+	});
+
+	test('should show the category of the question', () => {
 		expect(screen.getByText('Entertainment: Music')).toBeInTheDocument();
+	});
+
+	test('should show the current question count to overall question count for game', () => {
+		expect(screen.getByText('Question 1 / 2')).toBeInTheDocument();
 	});
 });
