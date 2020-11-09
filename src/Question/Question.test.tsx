@@ -5,6 +5,10 @@ import '@testing-library/jest-dom';
 
 import { QuizQuestionModel } from '../utils/utils';
 
+import Question from '../Question/Question';
+
+const mockValidateAnswer = jest.fn();
+
 describe('Question', () => {
 	let mockQuestion: any;
 	beforeEach(() => {
@@ -22,6 +26,19 @@ describe('Question', () => {
 				},
 			],
 		];
+		render(
+			<Question
+				category={mockQuestion[0].category}
+				question={mockQuestion[0].question}
+				answers={mockQuestion[0].answers}
+				validateAnswer={mockValidateAnswer}
+				currentQuestionNum={1}
+				questionCount={mockQuestion.length}
+			/>
+		);
 	});
-	test('should show the category of the question', () => {});
+
+	test('should show the category of the question', () => {
+		screen.debug();
+	});
 });
