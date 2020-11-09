@@ -22,7 +22,7 @@ const App = () => {
 	};
 
 	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const answer = event.currentTarget.value;
+		const answer = event.currentTarget.innerHTML;
 		const correct = questions[currentQuestionNum - 1].correct_answer === answer;
 		const answerModel = {
 			question: questions[currentQuestionNum - 1].question,
