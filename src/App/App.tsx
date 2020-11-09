@@ -19,7 +19,7 @@ const App = () => {
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
-	const [savedGames, setSavedGames] = useState<SavedQuizGamesModel[]>([]);
+	const [savedGames, setSavedGames] = useState<any[]>([]);
 
 	const startQuiz = async () => {
 		setLoading('Loading your InstaQuiz...');
@@ -69,6 +69,17 @@ const App = () => {
 			setError('');
 			setCurrentQuestionNum(currentQuestionNum + 1);
 		}
+	};
+
+	const saveQuizGame = () => {
+		setSavedGames([
+			...savedGames,
+			{
+				id: Date.now(),
+				allQuestions: [...questions],
+				allAnswers: [...userAnswers],
+			},
+		]);
 	};
 
 	return (
