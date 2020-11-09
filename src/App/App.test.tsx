@@ -41,4 +41,10 @@ describe('App', () => {
 	test('should render instaquizzes to the screen', () => {
 		expect(screen.getByText('InstaQuizzes')).toBeInTheDocument();
 	});
+
+	test('should render a button to start a new InstaQuiz', () => {
+		expect(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		).toBeInTheDocument();
+	});
 });
