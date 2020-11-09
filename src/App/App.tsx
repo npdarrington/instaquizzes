@@ -19,7 +19,7 @@ const App = () => {
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
-	const [savedGames, setSavedGames] = useState<any[]>([]);
+	const [savedGames, setSavedGames] = useState<SavedQuizGamesModel[]>([]);
 
 	const startQuiz = async () => {
 		setLoading('Loading your InstaQuiz...');
