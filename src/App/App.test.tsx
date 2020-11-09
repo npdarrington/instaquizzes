@@ -67,6 +67,7 @@ describe('App', () => {
 		const answerBtn3 = answersBtns[3].innerHTML;
 		const answerBtn4 = answersBtns[4].innerHTML;
 		expect(questionCategory).toBeInTheDocument();
+		expect(question).toBeInTheDocument();
 		expect(answerBtn1).toBe('Dave');
 		expect(answerBtn2).toBe('Fernando');
 		expect(answerBtn3).toBe('Figaro');
