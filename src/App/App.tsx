@@ -33,6 +33,10 @@ const App = () => {
 		setUserAnswers([...userAnswers, answerModel]);
 	};
 
+	const nextQuestion = () => {
+		setCurrentQuestionNum(currentQuestionNum + 1);
+	};
+
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
