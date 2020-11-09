@@ -38,9 +38,7 @@ const App = () => {
 	};
 
 	const nextQuestion = () => {
-		setCurrentQuestionNum(currentQuestionNum + 1);
-
-		if (currentQuestionNum === questionCount) {
+		if (userAnswers.length === questionCount) {
 			setGameOver(true);
 		} else {
 			setCurrentQuestionNum(currentQuestionNum + 1);
@@ -64,11 +62,14 @@ const App = () => {
 					questionCount={questionCount}
 				/>
 			)}
-			{userAnswers.length === currentQuestionNum &&
-				userAnswers.length !== questionCount && (
-					<button onClick={nextQuestion}>Next Question</button>
-				)}
-			{currentQuestionNum === questionCount && (
+			{!gameOver && userAnswers.length === currentQuestionNum && (
+				<button onClick={nextQuestion}>
+					{userAnswers.length === questionCount
+						? `Finish Quiz`
+						: `Next Question`}
+				</button>
+			)}
+			{gameOver && (
 				<section className='play-again-section'>
 					<button>Restart</button>
 					<button>Save</button>
