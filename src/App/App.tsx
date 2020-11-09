@@ -26,8 +26,12 @@ const App = () => {
 			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
 			setQuestions(newQuizQuestions);
 			setLoading('');
+			setError('');
 		} catch (_err) {
-			console.log(_err);
+			setError(
+				'A failure occurred when getting your InstaQuiz game! Please refresh to try again!'
+			);
+			setLoading('');
 		}
 	};
 
@@ -64,7 +68,7 @@ const App = () => {
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
-			<button onClick={startQuiz}>Click me for testing!</button>
+			<button onClick={startQuiz}>Start a New InstaQuiz!</button>
 			{questions.length < 1 && (
 				<h1>Click on the button above to test a Question!</h1>
 			)}
