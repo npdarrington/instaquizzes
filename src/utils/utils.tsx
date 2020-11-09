@@ -13,6 +13,10 @@ export interface QuestionAPIModel {
 	type: string;
 }
 
+export interface CombineAnswersModel {
+	answers: [];
+}
+
 export const randomizeAnswer = (answers: string[]) => {
 	Math.floor(Math.random() * answers.length);
 };
