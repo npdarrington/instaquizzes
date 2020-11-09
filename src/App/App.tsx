@@ -21,6 +21,18 @@ const App = () => {
 		}
 	};
 
+	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
+		const answer = event.currentTarget.value;
+		const correct = questions[currentQuestionNum].correct_answer === answer;
+		const answerModel = {
+			question: questions[currentQuestionNum].question,
+			answer,
+			correct,
+			correctAnswer: questions[currentQuestionNum].correct_answer,
+		};
+		setUserAnswers([...userAnswers, answerModel]);
+	};
+
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
