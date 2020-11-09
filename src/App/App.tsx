@@ -13,11 +13,17 @@ const App = () => {
 	const [questionCount, setQuestionCount] = useState(15);
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
+	const [loading, setLoading] = useState('');
 
 	const startQuiz = async () => {
+		setLoading('Loading your InstaQuiz...');
+		setError('');
+		setGameOver(false);
+
 		try {
 			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
 			setQuestions(newQuizQuestions);
+			setLoading('');
 		} catch (_err) {
 			console.log(_err);
 		}
@@ -61,6 +67,7 @@ const App = () => {
 				<h1>Click on the button above to test a Question!</h1>
 			)}
 			{error && <h1>{error}</h1>}
+			{loading && <h1>{loading}</h1>}
 			{questions.length > 0 && (
 				<Question
 					category={questions[currentQuestionNum - 1].category}
