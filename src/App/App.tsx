@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { QuizQuestionModel, Difficulty, UserAnswerModel } from '../utils/utils';
+import {
+	QuizQuestionModel,
+	Difficulty,
+	UserAnswerModel,
+	SavedQuizGamesModel,
+} from '../utils/utils';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
@@ -10,10 +15,11 @@ const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
 	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
-	const [questionCount, setQuestionCount] = useState(15);
+	const [questionCount] = useState(15);
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
+	const [savedGames, setSavedGames] = useState<SavedQuizGamesModel[]>([]);
 
 	const startQuiz = async () => {
 		setLoading('Loading your InstaQuiz...');
@@ -29,7 +35,7 @@ const App = () => {
 			setError('');
 		} catch (_err) {
 			setError(
-				'A failure occurred when getting your InstaQuiz game! Please refresh to try again!'
+				'A failure occurred when getting your InstaQuiz game. Please refresh to try again'
 			);
 			setLoading('');
 		}
@@ -50,8 +56,8 @@ const App = () => {
 			setError('');
 		} else {
 			gameOver
-				? setError('The game has already finished!')
-				: setError('This question has already been answered!');
+				? setError('The game has already finished')
+				: setError('This question has already been answered');
 		}
 	};
 
@@ -65,12 +71,24 @@ const App = () => {
 		}
 	};
 
+	const saveQuizGame = () => {
+		setSavedGames([
+			...savedGames,
+			{
+				id: Date.now(),
+				allQuestions: [...questions],
+				allAnswers: [...userAnswers],
+			},
+		]);
+		setLoading('This InstaQuiz game has been saved');
+	};
+
 	return (
 		<div className='App'>
-			<h1>InstaQuizzes!</h1>
-			<button onClick={startQuiz}>Start a New InstaQuiz!</button>
+			<h1>InstaQuizzes</h1>
+			<button onClick={startQuiz}>Start a New InstaQuiz</button>
 			{questions.length < 1 && (
-				<h1>Click on the button above to test a Question!</h1>
+				<h1>Click on the button above to test a Question</h1>
 			)}
 			{error && <h1>{error}</h1>}
 			{loading && <h1>{loading}</h1>}
@@ -94,7 +112,7 @@ const App = () => {
 			{gameOver && (
 				<section className='play-again-section'>
 					<button onClick={startQuiz}>Start New Game</button>
-					<button>Save</button>
+					<button onClick={saveQuizGame}>Save Previous Game</button>
 				</section>
 			)}
 		</div>

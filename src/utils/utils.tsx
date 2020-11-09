@@ -26,6 +26,12 @@ export interface UserAnswerModel {
 	correctAnswer: string;
 }
 
+export interface SavedQuizGamesModel {
+	id: number;
+	allQuestions: QuizQuestionModel[];
+	allAnswers: UserAnswerModel[];
+}
+
 export const randomizeAnswers = (answers: string[]) => {
 	const randomizedAnswers = [];
 	const iteration: number = answers.length;
