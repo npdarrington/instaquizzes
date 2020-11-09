@@ -72,4 +72,19 @@ describe('App', () => {
 		expect(answerBtn3).toBe('Figaro');
 		expect(answerBtn4).toBe('Angelo');
 	});
+
+	test('should allow a user to answer a question when clicking an answer button', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(<App />);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Music'));
+		const answersBtns = screen.getAllByRole('button');
+		const answerBtn3 = answersBtns[3];
+		userEvent.click(answerBtn3);
+		expect(
+			screen.getByRole('button', { name: 'Next Question' })
+		).toBeInTheDocument();
+	});
 });
