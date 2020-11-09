@@ -35,7 +35,7 @@ const App = () => {
 			setError('');
 		} catch (_err) {
 			setError(
-				'A failure occurred when getting your InstaQuiz game! Please refresh to try again!'
+				'A failure occurred when getting your InstaQuiz game. Please refresh to try again'
 			);
 			setLoading('');
 		}
@@ -56,8 +56,8 @@ const App = () => {
 			setError('');
 		} else {
 			gameOver
-				? setError('The game has already finished!')
-				: setError('This question has already been answered!');
+				? setError('The game has already finished')
+				: setError('This question has already been answered');
 		}
 	};
 
@@ -80,14 +80,15 @@ const App = () => {
 				allAnswers: [...userAnswers],
 			},
 		]);
+		setLoading('This InstaQuiz game has been saved');
 	};
 
 	return (
 		<div className='App'>
-			<h1>InstaQuizzes!</h1>
-			<button onClick={startQuiz}>Start a New InstaQuiz!</button>
+			<h1>InstaQuizzes</h1>
+			<button onClick={startQuiz}>Start a New InstaQuiz</button>
 			{questions.length < 1 && (
-				<h1>Click on the button above to test a Question!</h1>
+				<h1>Click on the button above to test a Question</h1>
 			)}
 			{error && <h1>{error}</h1>}
 			{loading && <h1>{loading}</h1>}
