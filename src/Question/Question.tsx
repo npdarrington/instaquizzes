@@ -4,9 +4,15 @@ interface IProps {
 	category: string;
 	question: string;
 	answers: string[];
+	validateAnswer: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Question: React.FC<IProps> = ({ category, question, answers }) => {
+const Question: React.FC<IProps> = ({
+	category,
+	question,
+	answers,
+	validateAnswer,
+}) => {
 	return (
 		<article className='question-card'>
 			<h3 className='question-number'>{category}</h3>
@@ -14,7 +20,11 @@ const Question: React.FC<IProps> = ({ category, question, answers }) => {
 			<p dangerouslySetInnerHTML={{ __html: question }} />
 			<section className='answers'>
 				{answers.map((answer, i) => (
-					<button key={i} dangerouslySetInnerHTML={{ __html: answer }} />
+					<button
+						key={i}
+						dangerouslySetInnerHTML={{ __html: answer }}
+						onClick={validateAnswer}
+					/>
 				))}
 			</section>
 		</article>
