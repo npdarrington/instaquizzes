@@ -26,6 +26,7 @@ const App = () => {
 			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
 			setQuestions(newQuizQuestions);
 			setLoading('');
+			setError('');
 		} catch (_err) {
 			setError(
 				'A failure occurred when getting your InstaQuiz game! Please refresh to try again!'
