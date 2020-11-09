@@ -28,8 +28,8 @@ export interface UserAnswerModel {
 
 export interface SavedQuizGamesModel {
 	id: number;
-	allQuestions: QuizQuestionModel;
-	allAnswers: UserAnswerModel;
+	allQuestions: QuizQuestionModel[];
+	allAnswers: UserAnswerModel[];
 }
 
 export const randomizeAnswers = (answers: string[]) => {
