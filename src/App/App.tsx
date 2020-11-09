@@ -23,12 +23,12 @@ const App = () => {
 
 	const validateAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const answer = event.currentTarget.value;
-		const correct = questions[currentQuestionNum].correct_answer === answer;
+		const correct = questions[currentQuestionNum - 1].correct_answer === answer;
 		const answerModel = {
-			question: questions[currentQuestionNum].question,
+			question: questions[currentQuestionNum - 1].question,
 			answer,
 			correct,
-			correctAnswer: questions[currentQuestionNum].correct_answer,
+			correctAnswer: questions[currentQuestionNum - 1].correct_answer,
 		};
 		setUserAnswers([...userAnswers, answerModel]);
 	};
