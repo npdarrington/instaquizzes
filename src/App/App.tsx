@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-
 import { QuizQuestionModel, Difficulty } from '../utils/utils';
 import { getQuizQuestions } from '../utils/apiCalls';
 
+import Question from '../Question/Question';
+
 import './App.scss';
 
-function App() {
+const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
 
 	const startQuiz = async () => {
@@ -21,8 +22,12 @@ function App() {
 		<div className='App'>
 			<h1>InstaQuizzes!</h1>
 			<button onClick={startQuiz}>Click me for testing!</button>
+			{questions.length < 1 && (
+				<h1>Click on the button above to test a Question!</h1>
+			)}
+			{questions.length > 0 && <Question />}
 		</div>
 	);
-}
+};
 
 export default App;
