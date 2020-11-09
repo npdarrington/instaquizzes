@@ -28,20 +28,3 @@ export const randomizeAnswers = (answers: string[]) => {
 	}
 	return randomizedAnswers;
 };
-
-export const cleanQuestionHtml = (allQuestions: QuizQuestionModel[]) => {
-	const replaceFillerWords = /(&quot;|&#039;|&eacute;)+/g;
-	return allQuestions.map(question => {
-		if (question.question.match(replaceFillerWords)) {
-			if (question.question.includes('&eacute;')) {
-				question.question = question.question.replace('&eacute;', 'e');
-			} else {
-				question.question = question.question.replaceAll(
-					replaceFillerWords,
-					''
-				);
-			}
-		}
-		return question;
-	});
-};
