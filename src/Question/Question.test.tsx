@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { QuizQuestionModel } from '../utils/utils';
@@ -10,7 +10,7 @@ import Question from '../Question/Question';
 const mockValidateAnswer = jest.fn();
 
 describe('Question', () => {
-	let mockQuestions: any;
+	let mockQuestions: QuizQuestionModel[];
 	beforeEach(() => {
 		mockQuestions = [
 			{
