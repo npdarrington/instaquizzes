@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { QuizQuestionModel, Difficulty, UserAnswerModel } from '../utils/utils';
+import {
+	QuizQuestionModel,
+	Difficulty,
+	UserAnswerModel,
+	SavedQuizGamesModel,
+} from '../utils/utils';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
@@ -14,6 +19,7 @@ const App = () => {
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
+	const [savedGames, setSavedGames] = useState<SavedQuizGamesModel[]>([]);
 
 	const startQuiz = async () => {
 		setLoading('Loading your InstaQuiz...');
