@@ -34,6 +34,7 @@ const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 			<p className='incorrect-answers'>
 				Incorrect Answers: {displayAnswersCount('incorrect')}
 			</p>
+			<button className='saved-quiz-details'>View Full Details</button>
 		</article>
 	);
 };
