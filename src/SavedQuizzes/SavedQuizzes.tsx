@@ -2,6 +2,8 @@ import React from 'react';
 
 import { SavedQuizGamesModel } from '../utils/utils';
 
+import SavedQuiz from '../SavedQuiz/SavedQuiz';
+
 import './SavedQuizzes.scss';
 
 interface IProps {
@@ -18,9 +20,9 @@ const SavedQuizzes: React.FC<IProps> = ({ savedGames }) => {
 				</h2>
 			)}
 			{savedGames.length > 0 &&
-				savedGames.map((savedGame, i) => {
-					return <h1 key={i}>Saved Game Here</h1>;
-				})}
+				savedGames.map((savedGame, i) => (
+					<SavedQuiz key={i} savedQuiz={savedGame} />
+				))}
 		</section>
 	);
 };
