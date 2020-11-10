@@ -139,4 +139,31 @@ describe('App', () => {
 			screen.getByText('This question has already been answered')
 		).toBeInTheDocument();
 	});
+
+	test('should show the next question button as Finish Quiz after answering last question', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		expect(
+			screen.getByRole('button', { name: 'Finish Quiz' })
+		).toBeInTheDocument();
+	});
 });
