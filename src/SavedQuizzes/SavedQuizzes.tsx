@@ -1,7 +1,17 @@
 import React from 'react';
 
-const SavedQuizzes = () => {
-	return <h1>SavedQuizzes Component</h1>;
+import { SavedQuizGamesModel } from '../utils/utils';
+
+import './SavedQuizzes.scss';
+
+interface IProps {
+	savedGames: SavedQuizGamesModel[];
+}
+
+const SavedQuizzes: React.FC<IProps> = ({ savedGames }) => {
+	return (
+		
+	);
 };
 
 export default SavedQuizzes;
