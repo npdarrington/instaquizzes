@@ -166,4 +166,35 @@ describe('App', () => {
 			screen.getByRole('button', { name: 'Finish Quiz' })
 		).toBeInTheDocument();
 	});
+
+	test('should finish the quiz when Finish Quiz is clicked', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		expect(
+			screen.getByRole('button', { name: 'Start New Game' })
+		).toBeInTheDocument();
+		expect(
+			screen.getByRole('button', { name: 'Save Previous Game' })
+		).toBeInTheDocument();
+	});
 });
