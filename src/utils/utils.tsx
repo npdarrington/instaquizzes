@@ -47,15 +47,10 @@ export const randomizeAnswers = (answers: string[]) => {
 	return randomizedAnswers;
 };
 
-export const displayAnswersCount = (
-	pattern: string,
-	savedQuiz: SavedQuizGamesModel
-): number => {
+export const displayAnswersCount = (pattern: string, quiz: any): number => {
 	if (pattern === AnswerType.CORRECT) {
-		return savedQuiz.allAnswers.filter((question: any) => question.correct)
-			.length;
+		return quiz.filter((question: any) => question.correct).length;
 	} else {
-		return savedQuiz.allAnswers.filter((question: any) => !question.correct)
-			.length;
+		return quiz.filter((question: any) => !question.correct).length;
 	}
 };
