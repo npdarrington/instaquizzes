@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { SavedQuizGamesModel } from '../utils/utils';
 
@@ -34,7 +35,9 @@ const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 			<p className='incorrect-answers'>
 				Incorrect Answers: {displayAnswersCount('incorrect')}
 			</p>
-			<button className='saved-quiz-details'>View Full Details</button>
+			<Link to={`/saved/${savedQuiz.id}`}>
+				<button className='saved-quiz-details'>View Full Details</button>
+			</Link>
 		</article>
 	);
 };
