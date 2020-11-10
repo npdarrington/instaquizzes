@@ -32,7 +32,7 @@ const App = () => {
 		setCurrentQuestionNum(1);
 
 		try {
-			await getQuizQuestions(15, Difficulty.EASY).then(data => {
+			await getQuizQuestions(2, Difficulty.EASY).then(data => {
 				setQuestions(data);
 				setQuestionCount(data.length);
 			});
@@ -134,6 +134,27 @@ const App = () => {
 					}}
 				/>
 				<Route
+					path='/saved/:id'
+					render={({ match }) => {
+						const savedQuizId: number = +match.params.id;
+						const foundSavedGame = savedGames.find(
+							savedGame => savedGame.id === savedQuizId
+						);
+						console.log(foundSavedGame);
+						if (foundSavedGame) {
+							return (
+								<section className='saved-quiz-details'>
+									<Link to='/'>Return to InstaQuiz Game</Link>
+									<Link to='/saved'>Return to Saved Quizzes</Link>
+									<SavedQuizDetails savedQuiz={foundSavedGame} />
+								</section>
+							);
+						} else {
+							return <Redirect to='/' />;
+						}
+					}}
+				/>
+				<Route
 					path='/saved'
 					render={() => {
 						return (
@@ -142,20 +163,6 @@ const App = () => {
 								<SavedQuizzes savedGames={savedGames} />
 							</section>
 						);
-					}}
-				/>
-				<Route
-					path='/saved/:id'
-					render={({ match }) => {
-						const { id } = match.params;
-						const foundSavedGame = savedGames.find(
-							savedGame => savedGame.id === id
-						);
-						if (foundSavedGame) {
-							return <SavedQuizDetails />;
-						} else {
-							return <Redirect to='/' />;
-						}
 					}}
 				/>
 				<Redirect to='/' />
