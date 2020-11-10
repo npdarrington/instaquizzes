@@ -32,7 +32,7 @@ const App = () => {
 		setCurrentQuestionNum(1);
 
 		try {
-			await getQuizQuestions(2, Difficulty.EASY).then(data => {
+			await getQuizQuestions(15, Difficulty.EASY).then(data => {
 				setQuestions(data);
 				setQuestionCount(data.length);
 			});
