@@ -50,7 +50,7 @@ export const randomizeAnswers = (answers: string[]) => {
 export const displayCorrectPercentage = (quiz: any) => {
 	const correctAnswers = quiz.filter((question: any) => question.correct)
 		.length;
-	return (correctAnswers / quiz.length) * 100;
+	return ((correctAnswers / quiz.length) * 100).toFixed(1);
 };
 
 export const displayAnswersCount = (pattern: string, quiz: any): number => {
