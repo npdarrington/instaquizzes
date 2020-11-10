@@ -226,4 +226,33 @@ describe('App', () => {
 			screen.getByText('This InstaQuiz game has been saved')
 		).toBeInTheDocument();
 	});
+
+	test('should restart with a new game when Start New Game is clicked', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		userEvent.click(screen.getByRole('button', { name: 'Start New Game' }));
+		await waitFor(() =>
+			expect(screen.getByText('Question 1 / 2')).toBeInTheDocument()
+		);
+	});
 });
