@@ -18,8 +18,8 @@ const SavedQuizzes: React.FC<IProps> = ({ savedGames }) => {
 				</h2>
 			)}
 			{savedGames.length > 0 &&
-				savedGames.map(savedGame => {
-					return <h1>Saved Game Here</h1>;
+				savedGames.map((savedGame, i) => {
+					return <h1 key={i}>Saved Game Here</h1>;
 				})}
 		</section>
 	);
