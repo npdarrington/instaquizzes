@@ -140,7 +140,6 @@ const App = () => {
 						const foundSavedGame = savedGames.find(
 							savedGame => savedGame.id === savedQuizId
 						);
-						console.log(foundSavedGame);
 						if (foundSavedGame) {
 							return (
 								<section className='saved-quiz-details'>
