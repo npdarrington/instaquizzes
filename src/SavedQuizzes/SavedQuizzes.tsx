@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SaveQuizzes = () => {
-	return <h1>SaveQuizzes Component</h1>;
+const SavedQuizzes = () => {
+	return <h1>SavedQuizzes Component</h1>;
 };
 
-export default SaveQuizzes;
+export default SavedQuizzes;
