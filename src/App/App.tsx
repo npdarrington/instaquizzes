@@ -5,7 +5,7 @@ import {
 	UserAnswerModel,
 	SavedQuizGamesModel,
 } from '../utils/utils';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
@@ -95,6 +95,9 @@ const App = () => {
 					render={() => {
 						return (
 							<section>
+								<section>
+									<Link to='/saved'>View Saved Quizzes</Link>
+								</section>
 								<button onClick={startQuiz}>Start a New InstaQuiz</button>
 								{questions.length < 1 && (
 									<h1>Click on the button above to test a Question</h1>
@@ -128,7 +131,17 @@ const App = () => {
 						);
 					}}
 				/>
-				<Route path='/saved' render={() => <SavedQuizzes />} />
+				<Route
+					path='/saved'
+					render={() => {
+						return (
+							<section>
+								<Link to='/'>Return to InstaQuiz Game</Link>
+								<SavedQuizzes />
+							</section>
+						);
+					}}
+				/>
 				<Redirect to='/' />
 			</Switch>
 		</div>
