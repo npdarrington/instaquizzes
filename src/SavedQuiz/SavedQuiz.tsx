@@ -17,10 +17,11 @@ const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 				Question Count: {savedQuiz.allQuestions.length}
 			</p>
 			<p className='correct-answers'>
-				Correct Answers: {displayAnswersCount('correct', savedQuiz)}
+				Correct Answers: {displayAnswersCount('correct', savedQuiz.allAnswers)}
 			</p>
 			<p className='incorrect-answers'>
-				Incorrect Answers: {displayAnswersCount('incorrect', savedQuiz)}
+				Incorrect Answers:{' '}
+				{displayAnswersCount('incorrect', savedQuiz.allAnswers)}
 			</p>
 			<Link to={`/saved/${savedQuiz.id}`}>
 				<button className='saved-quiz-details'>View Full Details</button>
