@@ -17,7 +17,7 @@ const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
 	const [userAnswers, setUserAnswers] = useState<UserAnswerModel[]>([]);
 	const [currentQuestionNum, setCurrentQuestionNum] = useState(1);
-	const [questionCount] = useState(15);
+	const [questionCount, setQuestionCount] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState('');
@@ -31,8 +31,10 @@ const App = () => {
 		setCurrentQuestionNum(1);
 
 		try {
-			const newQuizQuestions = await getQuizQuestions(15, Difficulty.EASY);
-			setQuestions(newQuizQuestions);
+			await getQuizQuestions(15, Difficulty.EASY).then(data => {
+				setQuestions(data);
+				setQuestionCount(data.length);
+			});
 			setLoading('');
 			setError('');
 		} catch (_err) {
