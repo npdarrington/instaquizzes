@@ -255,4 +255,37 @@ describe('App', () => {
 			expect(screen.getByText('Question 1 / 2')).toBeInTheDocument()
 		);
 	});
+
+	test('should tell a user that the game has ended if they attempt to answer the last question twice', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		expect(
+			screen.getByText('The game has already finished')
+		).toBeInTheDocument();
+	});
 });
