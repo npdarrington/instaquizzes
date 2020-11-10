@@ -10,6 +10,7 @@ import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
+import SavedQuizDetails from '../SavedQuizDetails/SavedQuizDetails';
 
 import './App.scss';
 
@@ -141,6 +142,20 @@ const App = () => {
 								<SavedQuizzes savedGames={savedGames} />
 							</section>
 						);
+					}}
+				/>
+				<Route
+					path='/saved/:id'
+					render={({ match }) => {
+						const { id } = match.params;
+						const foundSavedGame = savedGames.find(
+							savedGame => savedGame.id === id
+						);
+						if (foundSavedGame) {
+							return <SavedQuizDetails />;
+						} else {
+							return <Redirect to='/' />;
+						}
 					}}
 				/>
 				<Redirect to='/' />
