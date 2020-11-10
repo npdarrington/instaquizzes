@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { SavedQuizGamesModel } from '../utils/utils'
+import { SavedQuizGamesModel } from '../utils/utils';
 
 import './SavedQuizDetails.scss';
 
 interface IProps {
-	savedQuiz: SavedQuizGamesModel
+	savedQuiz: SavedQuizGamesModel;
 }
 
 const SavedQuizDetails: React.FC<IProps> = ({ savedQuiz }) => {
-	return <h1>SavedQuizDetails Component {savedQuiz.id}</h1>;
+	return (
+		<section className='saved-quiz'>
+			{savedQuiz.allQuestions.map((quiz, i) => {
+				return (
+					<article key={i} className='saved-quiz-card'>
+						<h3>Question: {i + 1}</h3>
+					</article>
+				);
+			})}
+		</section>
+	);
 };
 
 export default SavedQuizDetails;
