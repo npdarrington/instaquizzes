@@ -9,6 +9,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
+import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
 
 import './App.scss';
 
@@ -127,6 +128,7 @@ const App = () => {
 						);
 					}}
 				/>
+				<Route path='/saved' render={() => <SavedQuizzes />} />
 				<Redirect to='/' />
 			</Switch>
 		</div>
