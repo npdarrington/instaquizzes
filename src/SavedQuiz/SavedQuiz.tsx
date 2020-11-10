@@ -8,9 +8,14 @@ interface IProps {
 	savedQuiz: SavedQuizGamesModel;
 }
 
+enum AnswerType {
+	CORRECT = 'correct',
+	INCORRECT = 'incorrect',
+}
+
 const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 	const displayAnswersCount = (pattern: string): number => {
-		if (pattern === 'correct') {
+		if (pattern === AnswerType.CORRECT) {
 			return savedQuiz.allAnswers.filter(question => question.correct).length;
 		} else {
 			return savedQuiz.allAnswers.filter(question => !question.correct).length;
