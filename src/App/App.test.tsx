@@ -1,6 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 
 import { getQuizQuestions } from '../utils/apiCalls';
@@ -18,12 +19,20 @@ describe('App', () => {
 	});
 
 	test('should render instaquizzes to the screen', () => {
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		expect(screen.getByText('InstaQuizzes')).toBeInTheDocument();
 	});
 
 	test('should render a button to start a new InstaQuiz', () => {
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		expect(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		).toBeInTheDocument();
@@ -31,7 +40,11 @@ describe('App', () => {
 
 	test('should render a question on the screen', async () => {
 		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		userEvent.click(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		);
@@ -56,7 +69,11 @@ describe('App', () => {
 
 	test('should allow a user to answer a question when clicking an answer button', async () => {
 		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		userEvent.click(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		);
@@ -71,7 +88,11 @@ describe('App', () => {
 
 	test('should allow a user to go to next question when clicking next question', async () => {
 		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		userEvent.click(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		);
@@ -100,7 +121,11 @@ describe('App', () => {
 
 	test('should show user an error message if they try to answer same question twice', async () => {
 		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
-		render(<App />);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
 		userEvent.click(
 			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
 		);
