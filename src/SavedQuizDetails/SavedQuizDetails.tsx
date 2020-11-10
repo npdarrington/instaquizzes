@@ -19,8 +19,12 @@ const SavedQuizDetails: React.FC<IProps> = ({ savedQuiz }) => {
 					<h4>{answer}</h4>
 				))}
 				<h3>Correct Answer: {quiz.correct_answer}</h3>
+				<h3>Your Answer: {displayAnswers(index)}</h3>
 			</section>
 		);
+	};
+	const displayAnswers = (index: number) => {
+		return savedQuiz.allAnswers[index].answer;
 	};
 	return (
 		<section className='saved-quiz'>
