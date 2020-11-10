@@ -10,6 +10,7 @@ import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
+import SavedQuizDetails from '../SavedQuizDetails/SavedQuizDetails';
 
 import './App.scss';
 
@@ -130,6 +131,26 @@ const App = () => {
 								)}
 							</section>
 						);
+					}}
+				/>
+				<Route
+					path='/saved/:id'
+					render={({ match }) => {
+						const savedQuizId: number = +match.params.id;
+						const foundSavedGame = savedGames.find(
+							savedGame => savedGame.id === savedQuizId
+						);
+						if (foundSavedGame) {
+							return (
+								<section className='saved-quiz-details'>
+									<Link to='/'>Return to InstaQuiz Game</Link>
+									<Link to='/saved'>Return to Saved Quizzes</Link>
+									<SavedQuizDetails savedQuiz={foundSavedGame} />
+								</section>
+							);
+						} else {
+							return <Redirect to='/' />;
+						}
 					}}
 				/>
 				<Route
