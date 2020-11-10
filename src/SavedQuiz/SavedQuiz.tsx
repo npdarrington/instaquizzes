@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { SavedQuizGamesModel } from '../utils/utils';
+import { SavedQuizGamesModel, displayAnswersCount } from '../utils/utils';
 
 import './SavedQuiz.scss';
 
@@ -9,20 +9,7 @@ interface IProps {
 	savedQuiz: SavedQuizGamesModel;
 }
 
-enum AnswerType {
-	CORRECT = 'correct',
-	INCORRECT = 'incorrect',
-}
-
 const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
-	const displayAnswersCount = (pattern: string): number => {
-		if (pattern === AnswerType.CORRECT) {
-			return savedQuiz.allAnswers.filter(question => question.correct).length;
-		} else {
-			return savedQuiz.allAnswers.filter(question => !question.correct).length;
-		}
-	};
-
 	return (
 		<article className='saved-quiz-card'>
 			<p className='category'>Category: All Random</p>
@@ -30,10 +17,10 @@ const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 				Question Count: {savedQuiz.allQuestions.length}
 			</p>
 			<p className='correct-answers'>
-				Correct Answers: {displayAnswersCount('correct')}
+				Correct Answers: {displayAnswersCount('correct', savedQuiz)}
 			</p>
 			<p className='incorrect-answers'>
-				Incorrect Answers: {displayAnswersCount('incorrect')}
+				Incorrect Answers: {displayAnswersCount('incorrect', savedQuiz)}
 			</p>
 			<Link to={`/saved/${savedQuiz.id}`}>
 				<button className='saved-quiz-details'>View Full Details</button>
