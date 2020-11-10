@@ -138,7 +138,7 @@ const App = () => {
 						return (
 							<section>
 								<Link to='/'>Return to InstaQuiz Game</Link>
-								<SavedQuizzes />
+								<SavedQuizzes savedGames={savedGames} />
 							</section>
 						);
 					}}
