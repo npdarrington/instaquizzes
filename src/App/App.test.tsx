@@ -1,6 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 
 import { getQuizQuestions } from '../utils/apiCalls';
@@ -419,5 +420,109 @@ describe('App', () => {
 		expect(
 			screen.getByText('This InstaQuiz game has been saved')
 		).toBeInTheDocument();
+	});
+
+	test('should restart with a new game when Start New Game is clicked', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		act(() => {
+			render(<App />);
+		});
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		const answerBtnFirstQuestion = screen.getByRole('button', {
+			name: 'Demoman',
+		});
+		userEvent.click(answerBtnFirstQuestion);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: '7',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Hungarian',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Mercy',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sprinter',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Benjamin Franklin',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Steve Blum',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Toad',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Japan',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: '402',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Rome',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Arceus',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Pudding Lane',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Kyoko Ito',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		act(() => {
+			userEvent.click(screen.getByRole('button', { name: 'Start New Game' }));
+		});
+		expect(screen.getByText('Question 1 / 15')).toBeInTheDocument();
 	});
 });
