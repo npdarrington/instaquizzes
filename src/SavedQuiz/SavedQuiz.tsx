@@ -8,8 +8,15 @@ interface IProps {
 	savedQuiz: SavedQuizGamesModel;
 }
 
-const SavedQuiz: React.FC<IProps> = () => {
-	return <h1>Saved Quiz Component</h1>;
+const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
+	return (
+		<article className='saved-quiz-card'>
+			<p className='category'>Category: All Random</p>
+			<p className='question-count'>
+				Question Count: {savedQuiz.allQuestions.length}
+			</p>
+		</article>
+	);
 };
 
 export default SavedQuiz;
