@@ -21,7 +21,10 @@ const SavedQuizzes: React.FC<IProps> = ({ savedGames }) => {
 			)}
 			{savedGames.length > 0 &&
 				savedGames.map((savedGame, i) => (
-					<SavedQuiz key={i} savedQuiz={savedGame} />
+					<article key={i} className='saved-games-section'>
+						<h2 className='quiz-id'>Saved Quiz {i + 1} </h2>
+						<SavedQuiz key={i} savedQuiz={savedGame} />
+					</article>
 				))}
 		</section>
 	);
