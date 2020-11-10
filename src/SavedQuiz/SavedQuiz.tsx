@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { SavedQuizGamesModel, displayAnswersCount } from '../utils/utils';
+import {
+	SavedQuizGamesModel,
+	displayAnswersCount,
+	displayCorrectPercentage,
+} from '../utils/utils';
 
 import './SavedQuiz.scss';
 
@@ -22,6 +26,10 @@ const SavedQuiz: React.FC<IProps> = ({ savedQuiz }) => {
 			<p className='incorrect-answers'>
 				Incorrect Answers:{' '}
 				{displayAnswersCount('incorrect', savedQuiz.allAnswers)}
+			</p>
+			<p className='correct-percentage'>
+				Correct Percentage:{' '}
+				{displayCorrectPercentage(savedQuiz.allAnswers) + '%'}
 			</p>
 			<Link to={`/saved/${savedQuiz.id}`}>
 				<button className='saved-quiz-details'>View Full Details</button>
