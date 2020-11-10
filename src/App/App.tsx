@@ -100,7 +100,9 @@ const App = () => {
 								<section>
 									<Link to='/saved'>View Saved Quizzes</Link>
 								</section>
-								<button onClick={startQuiz}>Start a New InstaQuiz</button>
+								{questions.length < 1 && (
+									<button onClick={startQuiz}>Start a New InstaQuiz</button>
+								)}
 								{questions.length < 1 && (
 									<h1>Click on the button above to test a Question</h1>
 								)}
