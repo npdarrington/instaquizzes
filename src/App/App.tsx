@@ -7,6 +7,7 @@ import {
 } from '../utils/utils';
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { getQuizQuestions } from '../utils/apiCalls';
+import { displayAnswersCount } from '../utils/utils';
 
 import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
@@ -127,6 +128,17 @@ const App = () => {
 									<section className='play-again-section'>
 										<button onClick={startQuiz}>Start New Game</button>
 										<button onClick={saveQuizGame}>Save Previous Game</button>
+										<section className='quiz-details-section'>
+											<h3>
+												Correct Answers:{' '}
+												{displayAnswersCount('correct', userAnswers)}
+											</h3>
+											<h3>
+												Incorrect Answers:{' '}
+												{displayAnswersCount('incorrect', userAnswers)}
+											</h3>
+											<h3>Correct Percentage: </h3>
+										</section>
 									</section>
 								)}
 							</section>
