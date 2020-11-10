@@ -197,4 +197,33 @@ describe('App', () => {
 			screen.getByRole('button', { name: 'Save Previous Game' })
 		).toBeInTheDocument();
 	});
+
+	test('should save the previous quiz when Save Previous Game is clicked', async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		userEvent.click(screen.getByRole('button', { name: 'Save Previous Game' }));
+		expect(
+			screen.getByText('This InstaQuiz game has been saved')
+		).toBeInTheDocument();
+	});
 });
