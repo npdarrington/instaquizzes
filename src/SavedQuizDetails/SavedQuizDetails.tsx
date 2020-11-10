@@ -23,9 +23,11 @@ const SavedQuizDetails: React.FC<IProps> = ({ savedQuiz }) => {
 			</section>
 		);
 	};
+
 	const displayAnswers = (index: number) => {
 		return savedQuiz.allAnswers[index].answer;
 	};
+
 	return (
 		<section className='saved-quiz'>
 			{savedQuiz.allQuestions.map((quiz, i) => {
