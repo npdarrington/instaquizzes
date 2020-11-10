@@ -91,8 +91,8 @@ const mockSavedQuizzesData = [
 			{
 				question:
 					'Which part from the JoJo&#039;s Bizarre Adventure manga is about a horse race across America?',
-				answer: 'Part 5: Golden Wind',
-				correct: false,
+				answer: 'Part 7: Steel Ball Run',
+				correct: true,
 				correctAnswer: 'Part 7: Steel Ball Run',
 			},
 		],
