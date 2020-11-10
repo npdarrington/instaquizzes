@@ -15,8 +15,8 @@ const SavedQuizDetails: React.FC<IProps> = ({ savedQuiz }) => {
 				<h3>Category: {quiz.category}</h3>
 				<h3 dangerouslySetInnerHTML={{ __html: quiz.question }} />
 				<h3>Available Answers: </h3>
-				{quiz.answers.map((answer: any) => (
-					<h4>{answer}</h4>
+				{quiz.answers.map((answer: any, i: number) => (
+					<h4 key={i} dangerouslySetInnerHTML={{ __html: answer }} />
 				))}
 				<h3>Correct Answer: {quiz.correct_answer}</h3>
 				<h3>Your Answer: {displayAnswers(index)}</h3>
