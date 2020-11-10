@@ -103,9 +103,6 @@ const App = () => {
 								{questions.length < 1 && (
 									<button onClick={startQuiz}>Start a New InstaQuiz</button>
 								)}
-								{questions.length < 1 && (
-									<h1>Click on the button above to test a Question</h1>
-								)}
 								{error && <h1>{error}</h1>}
 								{loading && <h1>{loading}</h1>}
 								{questions.length > 0 && (
