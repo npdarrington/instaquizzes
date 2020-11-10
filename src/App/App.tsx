@@ -5,9 +5,11 @@ import {
 	UserAnswerModel,
 	SavedQuizGamesModel,
 } from '../utils/utils';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { getQuizQuestions } from '../utils/apiCalls';
 
 import Question from '../Question/Question';
+import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
 
 import './App.scss';
 
@@ -86,35 +88,62 @@ const App = () => {
 	return (
 		<div className='App'>
 			<h1>InstaQuizzes</h1>
-			<button onClick={startQuiz}>Start a New InstaQuiz</button>
-			{questions.length < 1 && (
-				<h1>Click on the button above to test a Question</h1>
-			)}
-			{error && <h1>{error}</h1>}
-			{loading && <h1>{loading}</h1>}
-			{questions.length > 0 && (
-				<Question
-					category={questions[currentQuestionNum - 1].category}
-					question={questions[currentQuestionNum - 1].question}
-					answers={questions[currentQuestionNum - 1].answers}
-					validateAnswer={validateAnswer}
-					currentQuestionNum={currentQuestionNum}
-					questionCount={questionCount}
+			<Switch>
+				<Route
+					exact
+					path='/'
+					render={() => {
+						return (
+							<section>
+								<section>
+									<Link to='/saved'>View Saved Quizzes</Link>
+								</section>
+								<button onClick={startQuiz}>Start a New InstaQuiz</button>
+								{questions.length < 1 && (
+									<h1>Click on the button above to test a Question</h1>
+								)}
+								{error && <h1>{error}</h1>}
+								{loading && <h1>{loading}</h1>}
+								{questions.length > 0 && (
+									<Question
+										category={questions[currentQuestionNum - 1].category}
+										question={questions[currentQuestionNum - 1].question}
+										answers={questions[currentQuestionNum - 1].answers}
+										validateAnswer={validateAnswer}
+										currentQuestionNum={currentQuestionNum}
+										questionCount={questionCount}
+									/>
+								)}
+								{!gameOver && userAnswers.length === currentQuestionNum && (
+									<button onClick={nextQuestion}>
+										{userAnswers.length === questionCount
+											? `Finish Quiz`
+											: `Next Question`}
+									</button>
+								)}
+								{gameOver && (
+									<section className='play-again-section'>
+										<button onClick={startQuiz}>Start New Game</button>
+										<button onClick={saveQuizGame}>Save Previous Game</button>
+									</section>
+								)}
+							</section>
+						);
+					}}
 				/>
-			)}
-			{!gameOver && userAnswers.length === currentQuestionNum && (
-				<button onClick={nextQuestion}>
-					{userAnswers.length === questionCount
-						? `Finish Quiz`
-						: `Next Question`}
-				</button>
-			)}
-			{gameOver && (
-				<section className='play-again-section'>
-					<button onClick={startQuiz}>Start New Game</button>
-					<button onClick={saveQuizGame}>Save Previous Game</button>
-				</section>
-			)}
+				<Route
+					path='/saved'
+					render={() => {
+						return (
+							<section>
+								<Link to='/'>Return to InstaQuiz Game</Link>
+								<SavedQuizzes />
+							</section>
+						);
+					}}
+				/>
+				<Redirect to='/' />
+			</Switch>
 		</div>
 	);
 };
