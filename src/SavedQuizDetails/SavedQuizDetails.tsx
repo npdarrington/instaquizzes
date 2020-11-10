@@ -18,8 +18,16 @@ const SavedQuizDetails: React.FC<IProps> = ({ savedQuiz }) => {
 				{quiz.answers.map((answer: any, i: number) => (
 					<h4 key={i} dangerouslySetInnerHTML={{ __html: answer }} />
 				))}
-				<h3>Correct Answer: {quiz.correct_answer}</h3>
-				<h3>Your Answer: {displayAnswers(index)}</h3>
+				<h3
+					dangerouslySetInnerHTML={{
+						__html: 'Correct Answer: ' + quiz.correct_answer,
+					}}
+				/>
+				<h3
+					dangerouslySetInnerHTML={{
+						__html: 'Your Answer: ' + displayAnswers(index),
+					}}
+				/>
 			</section>
 		);
 	};
