@@ -55,10 +55,10 @@ describe('App', () => {
 			'Which of these is NOT a player class in Team Fortress 2?'
 		);
 		const answersBtns = screen.getAllByRole('button');
-		const answerBtn1 = answersBtns[1].innerHTML;
-		const answerBtn2 = answersBtns[2].innerHTML;
-		const answerBtn3 = answersBtns[3].innerHTML;
-		const answerBtn4 = answersBtns[4].innerHTML;
+		const answerBtn1 = answersBtns[0].innerHTML;
+		const answerBtn2 = answersBtns[1].innerHTML;
+		const answerBtn3 = answersBtns[2].innerHTML;
+		const answerBtn4 = answersBtns[3].innerHTML;
 		expect(questionCategory).toBeInTheDocument();
 		expect(question).toBeInTheDocument();
 		expect(answerBtn1).toBe('Spy');
@@ -107,10 +107,10 @@ describe('App', () => {
 			'Which of these levels does NOT appear in the console/PC versions of the game "Sonic Generations"?'
 		);
 		const answersBtns = screen.getAllByRole('button');
-		const answerBtn1 = answersBtns[1].innerHTML;
-		const answerBtn2 = answersBtns[2].innerHTML;
-		const answerBtn3 = answersBtns[3].innerHTML;
-		const answerBtn4 = answersBtns[4].innerHTML;
+		const answerBtn1 = answersBtns[0].innerHTML;
+		const answerBtn2 = answersBtns[1].innerHTML;
+		const answerBtn3 = answersBtns[2].innerHTML;
+		const answerBtn4 = answersBtns[3].innerHTML;
 		expect(questionCategory).toBeInTheDocument();
 		expect(question).toBeInTheDocument();
 		expect(answerBtn1).toBe('City Escape');
