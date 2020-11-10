@@ -7,7 +7,7 @@ import {
 } from '../utils/utils';
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { getQuizQuestions } from '../utils/apiCalls';
-import { displayAnswersCount } from '../utils/utils';
+import { displayAnswersCount, displayCorrectPercentage } from '../utils/utils';
 
 import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
@@ -137,7 +137,10 @@ const App = () => {
 												Incorrect Answers:{' '}
 												{displayAnswersCount('incorrect', userAnswers)}
 											</h3>
-											<h3>Correct Percentage: </h3>
+											<h3>
+												Correct Percentage:{' '}
+												{displayCorrectPercentage(userAnswers) + '%'}
+											</h3>
 										</section>
 									</section>
 								)}
