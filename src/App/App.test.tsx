@@ -316,4 +316,40 @@ describe('App', () => {
 		expect(screen.getByText('Incorrect Answers: 2')).toBeInTheDocument();
 		expect(screen.getByText('Correct Percentage: 0.0%')).toBeInTheDocument();
 	});
+
+	test("should display a user's saved games on the save route", async () => {
+		(getQuizQuestions as jest.Mock).mockResolvedValue(mockQuestions);
+		render(
+			<MemoryRouter>
+				<App />
+			</MemoryRouter>
+		);
+		userEvent.click(
+			screen.getByRole('button', { name: 'Start a New InstaQuiz' })
+		);
+		await waitFor(() => screen.getByText('Entertainment: Video Games'));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Demoman',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Next Question' }));
+		userEvent.click(
+			screen.getByRole('button', {
+				name: 'Sky Sanctuary',
+			})
+		);
+		userEvent.click(screen.getByRole('button', { name: 'Finish Quiz' }));
+		userEvent.click(screen.getByRole('button', { name: 'Save Previous Game' }));
+		userEvent.click(screen.getByText('View Saved Quizzes'));
+		expect(screen.getByText('Saved Quiz 1')).toBeInTheDocument();
+		expect(screen.getByText('Category: All Random')).toBeInTheDocument();
+		expect(screen.getByText('Question Count: 2')).toBeInTheDocument();
+		expect(screen.getByText('Correct Answers: 0')).toBeInTheDocument();
+		expect(screen.getByText('Incorrect Answers: 2')).toBeInTheDocument();
+		expect(screen.getByText('Correct Percentage: 0.0%')).toBeInTheDocument();
+		expect(
+			screen.getByRole('button', { name: 'View Full Details' })
+		).toBeInTheDocument();
+	});
 });
