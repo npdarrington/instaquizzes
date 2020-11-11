@@ -8,9 +8,6 @@ A user is also able to replay a new quiz game and/or save the quiz them they jus
 
 ### App in Action
 
-**Quiz Start**
-![InstaQuizzes Game Start](./src/images/InstaQuiz-start.png)
-
 **Quiz End**
 ![InstaQuizzes Game Finish](./src/images/InstaQuiz-finish.png)
 
