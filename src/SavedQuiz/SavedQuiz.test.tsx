@@ -8,7 +8,7 @@ import SavedQuiz from './SavedQuiz';
 import { SavedQuizGamesModel } from '../utils/utils';
 import mockSavedQuizData from './mocksavedQuizData';
 
-const mockSavedData: any = mockSavedQuizData;
+const mockSavedData: SavedQuizGamesModel = mockSavedQuizData;
 
 describe('SavedQuiz', () => {
 	test('should render a SavedQuiz on the page', () => {
@@ -17,6 +17,14 @@ describe('SavedQuiz', () => {
 				<SavedQuiz savedQuiz={mockSavedData} />
 			</MemoryRouter>
 		);
-		screen.debug();
+
+		expect(screen.getByText('Category: All Random')).toBeInTheDocument();
+		expect(screen.getByText('Question Count: 2')).toBeInTheDocument();
+		expect(screen.getByText('Correct Answers: 0')).toBeInTheDocument();
+		expect(screen.getByText('Incorrect Answers: 2')).toBeInTheDocument();
+		expect(screen.getByText('Correct Percentage: 0.0%')).toBeInTheDocument();
+		expect(
+			screen.getByRole('button', { name: 'View Full Details' })
+		).toBeInTheDocument();
 	});
 });
