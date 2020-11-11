@@ -4,6 +4,11 @@ export enum Difficulty {
 	HARD = 'hard',
 }
 
+enum AnswerType {
+	CORRECT = 'correct',
+	INCORRECT = 'incorrect',
+}
+
 export interface QuestionAPIModel {
 	category: string;
 	correct_answer: string;
@@ -40,4 +45,18 @@ export const randomizeAnswers = (answers: string[]) => {
 		randomizedAnswers.push(answers.splice(getRandomIndex, 1)[0]);
 	}
 	return randomizedAnswers;
+};
+
+export const displayCorrectPercentage = (quiz: any) => {
+	const correctAnswers = quiz.filter((question: any) => question.correct)
+		.length;
+	return ((correctAnswers / quiz.length) * 100).toFixed(1);
+};
+
+export const displayAnswersCount = (pattern: string, quiz: any): number => {
+	if (pattern === AnswerType.CORRECT) {
+		return quiz.filter((question: any) => question.correct).length;
+	} else {
+		return quiz.filter((question: any) => !question.correct).length;
+	}
 };
