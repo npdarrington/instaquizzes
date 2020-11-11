@@ -1,4 +1,4 @@
-# Rancid Tomatillos
+# InstaQuizzes!
 
 ## Abstract
 
@@ -30,7 +30,7 @@ npm start --> localhost:3000 by default
 To view the test suite for InstaQuizzes:
 
 ```
-Inside of the Rancid Tomatillos directory--> npm test
+Inside of the InstaQuizzes directory--> npm test
 ```
 
 ## Skills
