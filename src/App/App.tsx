@@ -13,7 +13,7 @@ import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
 import SavedQuizDetails from '../SavedQuizDetails/SavedQuizDetails';
 
-import { GlobalStyle } from './App.styles';
+import { GlobalStyle, Wrapper } from './App.styles';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
@@ -90,7 +90,7 @@ const App = () => {
 	};
 
 	return (
-		<div className='App'>
+		<Wrapper>
 			<h1>InstaQuizzes</h1>
 			<Switch>
 				<Route
@@ -184,7 +184,7 @@ const App = () => {
 				/>
 				<Redirect to='/' />
 			</Switch>
-		</div>
+		</Wrapper>
 	);
 };
 
