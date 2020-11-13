@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import BGImage from '../images/tiffany-nguyen-bg.jpg';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -6,10 +7,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    margin: 0;
-    padding: 0 20x;
     display: flex;
     justify-content: center;
+    background-image: url(${BGImage});
+    background-size: cover;
+    margin: 0;
+    padding: 0 20x;
   }
 
   * {
