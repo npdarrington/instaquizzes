@@ -13,7 +13,7 @@ import Question from '../Question/Question';
 import SavedQuizzes from '../SavedQuizzes/SavedQuizzes';
 import SavedQuizDetails from '../SavedQuizDetails/SavedQuizDetails';
 
-import './App.scss';
+import { GlobalStyle, Wrapper } from './App.styles';
 
 const App = () => {
 	const [questions, setQuestions] = useState<QuizQuestionModel[]>([]);
@@ -90,7 +90,7 @@ const App = () => {
 	};
 
 	return (
-		<div className='App'>
+		<Wrapper>
 			<h1>InstaQuizzes</h1>
 			<Switch>
 				<Route
@@ -98,53 +98,56 @@ const App = () => {
 					path='/'
 					render={() => {
 						return (
-							<section>
+							<>
+								<GlobalStyle />
 								<section>
-									<Link to='/saved'>View Saved Quizzes</Link>
-								</section>
-								{questions.length < 1 && (
-									<button onClick={startQuiz}>Start a New InstaQuiz</button>
-								)}
-								{error && <h1>{error}</h1>}
-								{loading && <h1>{loading}</h1>}
-								{questions.length > 0 && (
-									<Question
-										category={questions[currentQuestionNum - 1].category}
-										question={questions[currentQuestionNum - 1].question}
-										answers={questions[currentQuestionNum - 1].answers}
-										validateAnswer={validateAnswer}
-										currentQuestionNum={currentQuestionNum}
-										questionCount={questionCount}
-									/>
-								)}
-								{!gameOver && userAnswers.length === currentQuestionNum && (
-									<button onClick={nextQuestion}>
-										{userAnswers.length === questionCount
-											? `Finish Quiz`
-											: `Next Question`}
-									</button>
-								)}
-								{gameOver && (
-									<section className='play-again-section'>
-										<button onClick={startQuiz}>Start New Game</button>
-										<button onClick={saveQuizGame}>Save Previous Game</button>
-										<section className='quiz-details-section'>
-											<h3>
-												Correct Answers:{' '}
-												{displayAnswersCount('correct', userAnswers)}
-											</h3>
-											<h3>
-												Incorrect Answers:{' '}
-												{displayAnswersCount('incorrect', userAnswers)}
-											</h3>
-											<h3>
-												Correct Percentage:{' '}
-												{displayCorrectPercentage(userAnswers) + '%'}
-											</h3>
-										</section>
+									<section>
+										<Link to='/saved'>View Saved Quizzes</Link>
 									</section>
-								)}
-							</section>
+									{questions.length < 1 && (
+										<button onClick={startQuiz}>Start a New InstaQuiz</button>
+									)}
+									{error && <h1>{error}</h1>}
+									{loading && <h1>{loading}</h1>}
+									{questions.length > 0 && (
+										<Question
+											category={questions[currentQuestionNum - 1].category}
+											question={questions[currentQuestionNum - 1].question}
+											answers={questions[currentQuestionNum - 1].answers}
+											validateAnswer={validateAnswer}
+											currentQuestionNum={currentQuestionNum}
+											questionCount={questionCount}
+										/>
+									)}
+									{!gameOver && userAnswers.length === currentQuestionNum && (
+										<button onClick={nextQuestion}>
+											{userAnswers.length === questionCount
+												? `Finish Quiz`
+												: `Next Question`}
+										</button>
+									)}
+									{gameOver && (
+										<section className='play-again-section'>
+											<button onClick={startQuiz}>Start New Game</button>
+											<button onClick={saveQuizGame}>Save Previous Game</button>
+											<section className='quiz-details-section'>
+												<h3>
+													Correct Answers:{' '}
+													{displayAnswersCount('correct', userAnswers)}
+												</h3>
+												<h3>
+													Incorrect Answers:{' '}
+													{displayAnswersCount('incorrect', userAnswers)}
+												</h3>
+												<h3>
+													Correct Percentage:{' '}
+													{displayCorrectPercentage(userAnswers) + '%'}
+												</h3>
+											</section>
+										</section>
+									)}
+								</section>
+							</>
 						);
 					}}
 				/>
@@ -181,7 +184,7 @@ const App = () => {
 				/>
 				<Redirect to='/' />
 			</Switch>
-		</div>
+		</Wrapper>
 	);
 };
 
